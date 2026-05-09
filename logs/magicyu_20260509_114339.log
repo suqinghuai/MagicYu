@@ -1,0 +1,63 @@
+2026-05-09 11:43:40,190 - [INFO] - 程序启动
+2026-05-09 11:43:40,190 - [INFO] - 检查间隔: 10秒
+2026-05-09 11:43:40,190 - [INFO] - 点击间隔: 1.0秒
+2026-05-09 11:43:40,190 - [INFO] - 缓冲时间: 1.5秒
+2026-05-09 11:43:40,190 - [INFO] - 刷新间隔: 300秒
+2026-05-09 11:43:40,190 - [INFO] - 点击抖动配置 - 对话框: 15像素, 输入框: 10像素, 发送按钮: 8像素, 空白区域: 20像素, 清除未读消息: 5像素, 确认清除: 5像素, 刷新按钮: 10像素
+2026-05-09 11:43:40,190 - [INFO] - 检查新消息...
+2026-05-09 11:43:40,192 - [INFO] - 检测到新消息
+2026-05-09 11:43:40,194 - [INFO] - 开始处理新消息流程...
+2026-05-09 11:43:40,194 - [INFO] - 发现新消息，随机等待 2.02 秒...
+2026-05-09 11:43:42,218 - [INFO] - 点击对话框: (825, 457)
+2026-05-09 11:43:42,349 - [ERROR] - 处理消息时出错: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+2026-05-09 11:43:42,350 - [ERROR] - 错误详情:
+Traceback (most recent call last):
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 491, in main
+    actual_click_interval, actual_coords = random_click(dialog_x, dialog_y, click_interval, dialog_jitter)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 348, in random_click
+    pyautogui.moveTo(step_x, step_y, duration=0.03)
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\.venv\Lib\site-packages\pyautogui\__init__.py", line 593, in wrapper
+    failSafeCheck()
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\.venv\Lib\site-packages\pyautogui\__init__.py", line 1734, in failSafeCheck
+    raise FailSafeException(
+pyautogui.FailSafeException: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+
+2026-05-09 11:43:52,351 - [INFO] - 检查新消息...
+2026-05-09 11:43:52,356 - [INFO] - 检测到新消息
+2026-05-09 11:43:52,356 - [INFO] - 开始处理新消息流程...
+2026-05-09 11:43:52,356 - [INFO] - 发现新消息，随机等待 1.79 秒...
+2026-05-09 11:43:54,145 - [INFO] - 点击对话框: (825, 457)
+2026-05-09 11:43:54,145 - [ERROR] - 处理消息时出错: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+2026-05-09 11:43:54,146 - [ERROR] - 错误详情:
+Traceback (most recent call last):
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 491, in main
+    actual_click_interval, actual_coords = random_click(dialog_x, dialog_y, click_interval, dialog_jitter)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 348, in random_click
+    pyautogui.moveTo(step_x, step_y, duration=0.03)
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\.venv\Lib\site-packages\pyautogui\__init__.py", line 593, in wrapper
+    failSafeCheck()
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\.venv\Lib\site-packages\pyautogui\__init__.py", line 1734, in failSafeCheck
+    raise FailSafeException(
+pyautogui.FailSafeException: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+
+2026-05-09 11:44:04,146 - [INFO] - 检查新消息...
+2026-05-09 11:44:04,151 - [INFO] - 检测到新消息
+2026-05-09 11:44:04,151 - [INFO] - 开始处理新消息流程...
+2026-05-09 11:44:04,153 - [INFO] - 发现新消息，随机等待 2.73 秒...
+2026-05-09 11:44:06,879 - [INFO] - 点击对话框: (825, 457)
+2026-05-09 11:44:06,879 - [ERROR] - 处理消息时出错: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+2026-05-09 11:44:06,880 - [ERROR] - 错误详情:
+Traceback (most recent call last):
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 491, in main
+    actual_click_interval, actual_coords = random_click(dialog_x, dialog_y, click_interval, dialog_jitter)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 348, in random_click
+    pyautogui.moveTo(step_x, step_y, duration=0.03)
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\.venv\Lib\site-packages\pyautogui\__init__.py", line 593, in wrapper
+    failSafeCheck()
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\.venv\Lib\site-packages\pyautogui\__init__.py", line 1734, in failSafeCheck
+    raise FailSafeException(
+pyautogui.FailSafeException: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+

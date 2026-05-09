@@ -6,6 +6,7 @@ import sys
 import random  # 用于生成随机数，增加操作随机性
 import pyautogui  # 用于屏幕截图和鼠标/键盘操作
 import pyperclip  # 用于剪贴板操作
+import keyboard  # 用于检测键盘输入
 from PIL import Image  # 用于图像处理
 import configparser  # 用于读取配置文件
 from pixel_reader import check_new_message, check_product  # 导入像素检测函数
@@ -134,6 +135,135 @@ def get_random_coordinate(base_x, base_y, jitter_range):
     random_y = base_y + jitter_y
     
     return random_x, random_y
+
+
+def get_mouse_position(prompt):
+    """
+    等待用户将鼠标移动到目标位置并按空格键确认，返回鼠标坐标
+    
+    Args:
+        prompt (str): 提示用户需要定位的位置描述
+        
+    Returns:
+        tuple: (X坐标, Y坐标)
+    """
+    print(f"\n请将鼠标移动到: {prompt}")
+    print("按空格键确认当前位置...")
+    
+    # 等待用户按空格键
+    while True:
+        # 获取当前鼠标位置
+        x, y = pyautogui.position()
+        # 显示实时坐标
+        print(f"\r当前鼠标位置: ({x}, {y})", end="", flush=True)
+        
+        # 检查是否按下空格键
+        if keyboard.is_pressed('space'):
+            print(f"\n已确认位置: ({x}, {y})")
+            # 等待用户释放空格键，避免连续触发
+            while keyboard.is_pressed('space'):
+                time.sleep(0.1)
+            return x, y
+        
+        time.sleep(0.1)
+
+
+def get_pixel_color(prompt):
+    """
+    获取指定位置的像素RGB颜色值
+    
+    Args:
+        prompt (str): 提示用户需要定位的位置描述
+        
+    Returns:
+        tuple: (红色值, 绿色值, 蓝色值)
+    """
+    x, y = get_mouse_position(prompt)
+    
+    # 获取像素颜色
+    try:
+        r, g, b = pyautogui.pixel(x, y)
+        print(f"检测到颜色: R={r}, G={g}, B={b}")
+        return r, g, b
+    except Exception as e:
+        print(f"获取像素颜色失败: {str(e)}")
+        return 255, 255, 255
+
+
+def manual_setup_coordinates():
+    """
+    手动设置所有坐标位置，并更新配置文件
+    """
+    print("\n=== 开始手动配置坐标 ===")
+    print("请按照提示依次将鼠标移动到指定位置并按空格键确认")
+    print("========================================\n")
+    
+    # 配置项列表
+    coordinates = {}
+    
+    # 新消息检测坐标和颜色
+    print("【新消息检测设置】")
+    coordinates['新消息_横坐标'], coordinates['新消息_纵坐标'] = get_mouse_position("新消息指示点（如红点位置）")
+    coordinates['新消息_红色值'], coordinates['新消息_绿色值'], coordinates['新消息_蓝色值'] = get_pixel_color("新消息指示点（获取颜色）")
+    
+    # 界面操作坐标
+    print("\n【界面操作坐标设置】")
+    coordinates['对话框横坐标'], coordinates['对话框纵坐标'] = get_mouse_position("对话框位置（点击可进入聊天）")
+    coordinates['输入框横坐标'], coordinates['输入框纵坐标'] = get_mouse_position("输入框位置（输入文字的地方）")
+    coordinates['发送按钮横坐标'], coordinates['发送按钮纵坐标'] = get_mouse_position("发送按钮位置")
+    coordinates['空白区域横坐标'], coordinates['空白区域纵坐标'] = get_mouse_position("空白区域位置（点击可返回列表）")
+    coordinates['清除未读消息按钮横坐标'], coordinates['清除未读消息按钮纵坐标'] = get_mouse_position("清除未读消息按钮位置")
+    coordinates['确认清除按钮横坐标'], coordinates['确认清除按钮纵坐标'] = get_mouse_position("确认清除按钮位置")
+    coordinates['刷新按钮横坐标'], coordinates['刷新按钮纵坐标'] = get_mouse_position("刷新按钮位置")
+    
+    # 聊天区域截图范围
+    print("\n【聊天区域截图设置】")
+    coordinates['聊天区域横坐标'], coordinates['聊天区域纵坐标'] = get_mouse_position("聊天区域左上角")
+    # 获取右下角坐标来计算宽度和高度
+    end_x, end_y = get_mouse_position("聊天区域右下角")
+    coordinates['聊天区域宽度'] = end_x - coordinates['聊天区域横坐标']
+    coordinates['聊天区域高度'] = end_y - coordinates['聊天区域纵坐标']
+    print(f"计算得到聊天区域: 宽度={coordinates['聊天区域宽度']}, 高度={coordinates['聊天区域高度']}")
+    
+    # 更新配置文件
+    print("\n【更新配置文件】")
+    
+    # 更新[新消息]段
+    config['新消息']['横坐标'] = str(coordinates['新消息_横坐标'])
+    config['新消息']['纵坐标'] = str(coordinates['新消息_纵坐标'])
+    config['新消息']['红色值'] = str(coordinates['新消息_红色值'])
+    config['新消息']['绿色值'] = str(coordinates['新消息_绿色值'])
+    config['新消息']['蓝色值'] = str(coordinates['新消息_蓝色值'])
+    
+    # 更新[坐标]段
+    config['坐标']['对话框横坐标'] = str(coordinates['对话框横坐标'])
+    config['坐标']['对话框纵坐标'] = str(coordinates['对话框纵坐标'])
+    config['坐标']['输入框横坐标'] = str(coordinates['输入框横坐标'])
+    config['坐标']['输入框纵坐标'] = str(coordinates['输入框纵坐标'])
+    config['坐标']['发送按钮横坐标'] = str(coordinates['发送按钮横坐标'])
+    config['坐标']['发送按钮纵坐标'] = str(coordinates['发送按钮纵坐标'])
+    config['坐标']['空白区域横坐标'] = str(coordinates['空白区域横坐标'])
+    config['坐标']['空白区域纵坐标'] = str(coordinates['空白区域纵坐标'])
+    config['坐标']['聊天区域横坐标'] = str(coordinates['聊天区域横坐标'])
+    config['坐标']['聊天区域纵坐标'] = str(coordinates['聊天区域纵坐标'])
+    config['坐标']['聊天区域宽度'] = str(coordinates['聊天区域宽度'])
+    config['坐标']['聊天区域高度'] = str(coordinates['聊天区域高度'])
+    config['坐标']['清除未读消息按钮横坐标'] = str(coordinates['清除未读消息按钮横坐标'])
+    config['坐标']['清除未读消息按钮纵坐标'] = str(coordinates['清除未读消息按钮纵坐标'])
+    config['坐标']['确认清除按钮横坐标'] = str(coordinates['确认清除按钮横坐标'])
+    config['坐标']['确认清除按钮纵坐标'] = str(coordinates['确认清除按钮纵坐标'])
+    config['坐标']['刷新按钮横坐标'] = str(coordinates['刷新按钮横坐标'])
+    config['坐标']['刷新按钮纵坐标'] = str(coordinates['刷新按钮纵坐标'])
+    
+    # 保存配置文件
+    with open(config_path, 'w', encoding='utf-8') as f:
+        config.write(f)
+    
+    print(f"配置文件已更新: {config_path}")
+    print("========================================")
+    print("手动配置完成！\n")
+    
+    return coordinates
 
 
 def random_mouse_move(start_x, start_y, end_x, end_y, steps=10):
@@ -269,6 +399,29 @@ def main():
     主函数，程序的核心逻辑
     """
     try:
+        # 程序启动时让用户选择配置方式
+        print("="*50)
+        print("       闲鱼智能回复助手")
+        print("="*50)
+        print("请选择配置方式：")
+        print("  1. 使用配置文件中的坐标位置")
+        print("  2. 手动定义新的坐标位置")
+        print("="*50)
+        
+        while True:
+            choice = input("请输入选择 (1 或 2): ").strip()
+            if choice == '1':
+                print("使用配置文件中的坐标位置...")
+                break
+            elif choice == '2':
+                print("准备手动配置坐标...")
+                manual_setup_coordinates()
+                break
+            else:
+                print("无效输入，请输入 1 或 2")
+        
+        print("\n" + "="*50)
+        
         # 从配置文件中读取设置和坐标
         check_interval = int(config['设置']['检查间隔'])  # 检查间隔（秒）
         click_interval = float(config['设置']['点击间隔'])  # 点击间隔（秒）

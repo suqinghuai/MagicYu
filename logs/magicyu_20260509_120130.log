@@ -1,0 +1,67 @@
+2026-05-09 12:01:31,958 - [INFO] - 程序启动
+2026-05-09 12:01:31,958 - [INFO] - 检查间隔: 10秒
+2026-05-09 12:01:31,958 - [INFO] - 点击间隔: 1.0秒
+2026-05-09 12:01:31,958 - [INFO] - 缓冲时间: 1.5秒
+2026-05-09 12:01:31,959 - [INFO] - 刷新间隔: 300秒
+2026-05-09 12:01:31,959 - [INFO] - 点击抖动配置 - 对话框: 15像素, 输入框: 10像素, 发送按钮: 8像素, 空白区域: 20像素, 清除未读消息: 5像素, 确认清除: 5像素, 刷新按钮: 10像素
+2026-05-09 12:01:31,959 - [INFO] - 检查新消息...
+2026-05-09 12:01:31,962 - [INFO] - 检测到新消息
+2026-05-09 12:01:31,962 - [INFO] - 开始处理新消息流程...
+2026-05-09 12:01:31,962 - [INFO] - 发现新消息，随机等待 1.95 秒...
+2026-05-09 12:01:33,914 - [INFO] - 点击对话框: (825, 457)
+2026-05-09 12:01:34,042 - [ERROR] - 处理消息时出错: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+2026-05-09 12:01:34,043 - [ERROR] - 错误详情:
+Traceback (most recent call last):
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 491, in main
+    actual_click_interval, actual_coords = random_click(dialog_x, dialog_y, click_interval, dialog_jitter)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 348, in random_click
+    pyautogui.moveTo(step_x, step_y, duration=0.03)
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\.venv\Lib\site-packages\pyautogui\__init__.py", line 593, in wrapper
+    failSafeCheck()
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\.venv\Lib\site-packages\pyautogui\__init__.py", line 1734, in failSafeCheck
+    raise FailSafeException(
+pyautogui.FailSafeException: PyAutoGUI fail-safe triggered from mouse moving to a corner of the screen. To disable this fail-safe, set pyautogui.FAILSAFE to False. DISABLING FAIL-SAFE IS NOT RECOMMENDED.
+
+2026-05-09 12:01:44,044 - [INFO] - 检查新消息...
+2026-05-09 12:01:44,050 - [INFO] - 检测到新消息
+2026-05-09 12:01:44,050 - [INFO] - 开始处理新消息流程...
+2026-05-09 12:01:44,050 - [INFO] - 发现新消息，随机等待 1.75 秒...
+2026-05-09 12:01:45,805 - [INFO] - 点击对话框: (825, 457)
+2026-05-09 12:01:49,147 - [INFO] - 实际点击间隔: 1.90 秒, 实际点击坐标: (820, 445)
+2026-05-09 12:01:49,147 - [INFO] - 等待2.75秒缓冲时间，确保界面完全加载...
+2026-05-09 12:01:51,902 - [INFO] - 检查商品信息...
+2026-05-09 12:01:51,903 - [ERROR] - 处理消息时出错: 'default'
+2026-05-09 12:01:51,918 - [ERROR] - 错误详情:
+Traceback (most recent call last):
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\pixel_reader.py", line 66, in check_product
+    prompt = config[prod]['提示词']
+             ~~~~~~~~~~~~^^^^^^^^^^
+  File "E:\1.anzhuang\4.env\1.python\Lib\configparser.py", line 1225, in __getitem__
+    return self._parser.get(self._name, key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\1.anzhuang\4.env\1.python\Lib\configparser.py", line 777, in get
+    return self._interpolation.before_get(self, section, option, value,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\1.anzhuang\4.env\1.python\Lib\configparser.py", line 367, in before_get
+    self._interpolate_some(parser, option, L, value, section, defaults, 1)
+  File "E:\1.anzhuang\4.env\1.python\Lib\configparser.py", line 414, in _interpolate_some
+    raise InterpolationSyntaxError(
+configparser.InterpolationSyntaxError: '%' must be followed by '%' or '(', found: '%都能导出来，可能会有缺失。标价就是卖价，可以直接拍，自动发货。因为标价较低，咨询量较大，不提供免费答疑，如果有需求，可以联系技术解决。如果顾客已经下单或我已经发货，那就祝他使用愉快。'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\main.py", line 502, in main
+    product_prompt = check_product()
+                     ^^^^^^^^^^^^^^^
+  File "C:\Users\43061\Music\1.编程\20.闲鱼智能回复\1.workspace\pixel_reader.py", line 78, in check_product
+    return config['default']['prompt']
+           ~~~~~~^^^^^^^^^^^
+  File "E:\1.anzhuang\4.env\1.python\Lib\configparser.py", line 941, in __getitem__
+    raise KeyError(key)
+KeyError: 'default'
+
+2026-05-09 12:02:01,919 - [INFO] - 检查新消息...
+2026-05-09 12:02:01,920 - [INFO] - 未检测到新消息
+2026-05-09 12:02:01,920 - [INFO] - 等待 10.99 秒后再次检查...
